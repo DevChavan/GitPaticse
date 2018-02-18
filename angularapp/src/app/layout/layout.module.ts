@@ -6,6 +6,7 @@ import { LayoutComponent } from "./layout.component";
 import { ChartModule } from "../charts/chart.module";
 import { SidebarComponent } from "../common/sidebar/sidebar.component";
 import { PageTopComponent } from "../common/page-top/pagetop.component";
+import { BranchComponent } from "../branch/branch.component";
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import { PageTopComponent } from "../common/page-top/pagetop.component";
         TableComponent,
         LayoutComponent,
         SidebarComponent,
-        PageTopComponent
+        PageTopComponent,
+        BranchComponent,
     ],
     imports: [
         routing,
