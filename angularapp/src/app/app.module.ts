@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { routing } from './app.rounting.module';
 import { LoginComponent } from "./login/login.component";
 import { LayoutModule } from "./layout/layout.module";
-import { NgForm, FormsModule }   from '@angular/forms';
+import { NgForm, FormsModule, ReactiveFormsModule, FormGroup }   from '@angular/forms';
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { NgForm, FormsModule }   from '@angular/forms';
     BrowserModule, 
     routing,
     LayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],  
   providers: [],  // services
   bootstrap: [AppComponent]
