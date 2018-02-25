@@ -2,5 +2,8 @@
     border: 1px solid red;
 }
 .ng-untouched .ng-untouched {
+   border: 1px solid red;
+}
+.ng-untouched:not(form){
     border: 1px solid #ccc;
 }
