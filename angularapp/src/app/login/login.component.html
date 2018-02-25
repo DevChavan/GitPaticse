@@ -10,17 +10,10 @@
                     <form [formGroup]="loginForm" (ngSubmit)="login()">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="Password" type="password" name="password" id="password" [formControl]="password" required>
-                                <div [hidden]="password.valid || password.untouched">
-                                <div>
-                                    The following problems have been found with the password:
-                                </div>
-
-                                <div [hidden]="!password.hasError('required')">
-                                    The password is required.
-                                </div>
-                                </div>
-                                <input class="form-control" placeholder="User" type="text" name="username" required id="username" formControlName="username">
+                                    <input class="form-control" placeholder="User" type="text" name="username" required id="username" formControlName="username">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" type="password" required name="password" id="password" formControlName="password">
                             </div>
                             <div class="signup">
                                 <a routerLink="/register">Sign Up</a>

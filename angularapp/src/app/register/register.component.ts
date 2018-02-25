@@ -34,10 +34,18 @@ export class RegisterComponent implements OnInit {
     //console.log(this.registerForm.value);
     // Attempt Logging in...
     if(this.registerForm.valid) {
-              
+      console.log(this.registerForm.value);
+      debugger;
+      this.usersevice.create(this.registerForm.value).subscribe(
+        result => {
+          console.log(result);
+        },
+        error => {
+          console.log(error);
+        }
+      )  
     }
-    console.log(this.registerForm.valid);
-    console.log(this.registerForm);
+    
   }
 
   ngOnInit() {
