@@ -4,21 +4,29 @@ import { AppComponent } from './app.component';
 import { routing } from './app.rounting.module';
 import { LoginComponent } from "./login/login.component";
 import { LayoutModule } from "./layout/layout.module";
-import { NgForm, FormsModule }   from '@angular/forms';
+import { FormBuilder, FormsModule, FormGroup, ReactiveFormsModule }   from '@angular/forms';
+import { RegisterComponent } from "./register/register.component";
+import { UserService } from "./service/user.service";
+import { HttpClientModule } from "@angular/common/http";
 
 
 @NgModule({
-  declarations: [
+  declarations: [ // components
     AppComponent,
-    LoginComponent,  // componets
+    LoginComponent,
+    RegisterComponent  
   ],
-  imports: [
+  imports: [ // Modules
     BrowserModule, 
     routing,
     LayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule, 
+    HttpClientModule
   ],  
-  providers: [],  // services
+  providers: [ // services
+    UserService,
+  ],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
