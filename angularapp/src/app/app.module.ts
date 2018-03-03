@@ -8,26 +8,30 @@ import { FormBuilder, FormsModule, FormGroup, ReactiveFormsModule }   from '@ang
 import { RegisterComponent } from "./register/register.component";
 import { UserService } from "./service/user.service";
 import { HttpClientModule } from "@angular/common/http";
+import {AuthGuard} from "./service/authguard.service";
+import {JwtInterceptor, JwtInterceptorProvider} from "./service/interceptor.service";
 
 
 @NgModule({
   declarations: [ // components
     AppComponent,
     LoginComponent,
-    RegisterComponent  
+    RegisterComponent
   ],
   imports: [ // Modules
-    BrowserModule, 
+    BrowserModule,
     routing,
     LayoutModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     HttpClientModule
-  ],  
+  ],
   providers: [ // services
     UserService,
-    ReactiveFormsModule
-  ],  
+    ReactiveFormsModule,
+    AuthGuard,
+    JwtInterceptorProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

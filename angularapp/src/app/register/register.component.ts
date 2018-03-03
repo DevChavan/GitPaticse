@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from "../service/user.service";
 import { Router } from "@angular/router";
@@ -9,11 +9,11 @@ import { Router } from "@angular/router";
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent implements OnInit {
-  firstname = new FormControl('', [
+export class RegisterComponent implements OnInit,OnDestroy {
+  firstName = new FormControl('', [
       Validators.required,
   ])
-  lastname = new FormControl('', [
+  lastName = new FormControl('', [
       Validators.required,
   ])
   username =  new FormControl('', [
@@ -23,14 +23,14 @@ export class RegisterComponent implements OnInit {
     Validators.required
   ])
   registerForm: FormGroup = this.builder.group({
-    firstname: this.firstname,
-    lastname: this.lastname,
+    firstName: this.firstName,
+    lastName: this.lastName,
     username: this.username,
     password: this.password,
   });
    constructor(
-    private builder: FormBuilder, 
-    private usersevice: UserService, 
+    private builder: FormBuilder,
+    private usersevice: UserService,
     private router: Router
   ) { }
 
@@ -48,10 +48,13 @@ export class RegisterComponent implements OnInit {
         error => {
           console.log(error);
         }
-      )  
+      )
     }
-    
+
   }
   ngOnInit() {
-  } 
+  }
+  ngOnDestroy(){
+
+  }
 }
