@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from "../service/user.service";
 import { Router } from "@angular/router";
+import {UserModel} from "../models/user.model";
 
 @Component({
   selector: 'app-register',
@@ -10,10 +11,10 @@ import { Router } from "@angular/router";
 })
 
 export class RegisterComponent implements OnInit {
-  firstname = new FormControl('', [
+  firstName = new FormControl('', [
       Validators.required,
   ])
-  lastname = new FormControl('', [
+  lastName = new FormControl('', [
       Validators.required,
   ])
   username =  new FormControl('', [
@@ -23,35 +24,37 @@ export class RegisterComponent implements OnInit {
     Validators.required
   ])
   registerForm: FormGroup = this.builder.group({
-    firstname: this.firstname,
-    lastname: this.lastname,
+    firstName: this.firstName,
+    lastName: this.lastName,
     username: this.username,
     password: this.password,
   });
    constructor(
-    private builder: FormBuilder, 
-    private usersevice: UserService, 
+    private builder: FormBuilder,
+    private usersevice: UserService,
     private router: Router
   ) { }
 
+  ngOnInit() {
+  }
   register() {
-    //console.log(this.registerForm.value);
+    console.log(this.registerForm.value);
     // Attempt Logging in...
     if(this.registerForm.valid) {
       console.log(this.registerForm.value);
       //debugger;
       this.usersevice.create(this.registerForm.value).subscribe(
         result => {
-          console.log(result);
-          this.router.navigate(['/login']);
+          console.log("ssad", result instanceof UserModel);
+          if(result instanceof UserModel) {
+            //console.log("sadsa", result);
+            this.router.navigate(['/login']);
+          }
         },
         error => {
           console.log(error);
         }
-      )  
+      )
     }
-    
   }
-  ngOnInit() {
-  } 
 }
