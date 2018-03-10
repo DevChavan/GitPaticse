@@ -9,10 +9,8 @@ import {ChartModule} from "../charts/chart.module";
 import {BranchComponent} from "../branch/branch.component";
 import {EmployeeComponent} from "../employee/employee.component"
 import {AccordionModule} from "primeng/accordion";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {DataTableModule} from "primeng/datatable";
 import {CalendarModule} from "primeng/calendar";
-import {BrowserModule} from "@angular/platform-browser";
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 @NgModule({
@@ -26,11 +24,9 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
     EmployeeComponent
   ],
   imports: [
-    BrowserModule,
     routing,
     ChartModule,
     AccordionModule,
-    BrowserAnimationsModule,
     DataTableModule,
     CalendarModule,
     FormsModule,

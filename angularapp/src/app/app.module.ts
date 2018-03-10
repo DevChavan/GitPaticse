@@ -10,6 +10,7 @@ import { UserService } from "./service/user.service";
 import { HttpClientModule } from "@angular/common/http";
 import {AuthGuard} from "./service/authguard.service";
 import {JwtInterceptor, JwtInterceptorProvider} from "./service/interceptor.service";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [ // components
@@ -23,7 +24,8 @@ import {JwtInterceptor, JwtInterceptorProvider} from "./service/interceptor.serv
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [ // services
     UserService,
