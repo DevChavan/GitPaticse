@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit,OnDestroy {
     private router: Router
   ) { }
 
-  
+
   register() {
     console.log(this.registerForm.value);
     // Attempt Logging in...
