@@ -78,7 +78,8 @@ function getById(_id) {
 }
 
 function create(userParam) {
-    var deferred = Q.defer();
+    var deferred =
+        Q.defer();
 
     // validation
     db.users.findOne(

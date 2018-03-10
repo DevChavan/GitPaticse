@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
 
 @Component({
@@ -8,35 +8,33 @@ import {UserService} from "../../service/user.service";
 })
 
 export class PageTopComponent {
+// variable  declaration
+  username:string;
+  //aray for user list to show list empty array
+  userList:Array<any>=[];
 
-  username: string;
-  userList: Array<any> = [];
-
-  constructor( private userService: UserService){
-    //localStorage.getItem("currentUser");
-    if(localStorage.getItem("currentUser")) {
-      console.log(localStorage.getItem("currentUser"));
-      let localstorageUser= localStorage.getItem("currentUser");
-      this.username = JSON.parse(localstorageUser).username;
-      console.log("test", this.username);
+  constructor(private userservice:UserService){
+    if(localStorage.getItem('currentUser')){
+      //console.log(localStorage.getItem('currentUser'));
+      let user= localStorage.getItem('currentUser');
+      this.username=JSON.parse(user).username;
     }
     this.getAllUser();
   }
-  ngOnInit(){
+  ngOnInit() {
 
   }
-  logOut(){
-    this.userService.logOut();
+  logout(){
+    this.userservice.logOut();
   }
-  getAllUser() {
-    this.userService.getAll().subscribe(
-      result=> {
-        this.userList = result;
-        console.log(result);
-      },
-      err=> {
+   getAllUser(){
+   this.userservice.getAll().subscribe(
+     result=>{
+       console.log(result);
+        this.userList=result;
+     },
+     error=>{
 
-      }
-    )
-  }
+     })
+   }
 }

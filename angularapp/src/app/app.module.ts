@@ -9,8 +9,7 @@ import { RegisterComponent } from "./register/register.component";
 import { UserService } from "./service/user.service";
 import { HttpClientModule } from "@angular/common/http";
 import {AuthGuard} from "./service/authguard.service";
-import {JwtInterceptorProvider} from "./service/interceptor.service";
-
+import {JwtInterceptor, JwtInterceptorProvider} from "./service/interceptor.service";
 
 @NgModule({
   declarations: [ // components
@@ -29,7 +28,8 @@ import {JwtInterceptorProvider} from "./service/interceptor.service";
   providers: [ // services
     UserService,
     ReactiveFormsModule,
-    AuthGuard
+    AuthGuard,
+    JwtInterceptorProvider
   ],
   bootstrap: [AppComponent]
 })

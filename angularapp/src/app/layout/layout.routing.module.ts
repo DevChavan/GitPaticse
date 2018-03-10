@@ -11,19 +11,19 @@ const routes: Routes = [
     path: '', component: LayoutComponent,
     children: [
         {
-            path: '', redirectTo: 'dashboard', pathMatch:'full', canActivate: [AuthGuard]
+            path: '', redirectTo: 'dashboard', pathMatch:'full', canActivate:[AuthGuard]
         },
         {
-            path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]
+            path: 'dashboard', component: DashboardComponent ,canActivate:[AuthGuard]
         },
         {
-            path: 'employee', component: EmployeeComponent, canActivate: [AuthGuard]
+            path: 'employee', component: EmployeeComponent ,canActivate:[AuthGuard]
         },
         {
-            path: 'branch', component: BranchComponent, canActivate: [AuthGuard]
+            path: 'branch', component: BranchComponent ,canActivate:[AuthGuard]
         },
         {
-            path: 'charts', loadChildren:'../charts/chart.module#ChartModule', canActivate: [AuthGuard]
+            path: 'charts', loadChildren:'../charts/chart.module#ChartModule' ,canActivate:[AuthGuard]
         }
     ]
   }

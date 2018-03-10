@@ -35,14 +35,14 @@ export class LoginComponent implements OnInit {
   login() {
 
     if(this.loginForm.valid) {
-      console.log(this.loginForm.value);
+     // console.log(this.loginForm.value);
       this.userservice.authenticate(this.loginForm.value).subscribe(
         result => {
-          console.log(result instanceof UserModel);
-          //if(result instanceof UserModel) {
-            console.log(result);
+         // console.log(result instanceof UserModel);
+         // if(result instanceof UserModel){
+           // console.log(result);
             this.router.navigate(['/dashboard']);
-          //}
+         // }
         },
         err => {
           console.log(err.error);

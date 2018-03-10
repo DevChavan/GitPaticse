@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Validators, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { UserService } from "../service/user.service";
 import { Router } from "@angular/router";
@@ -10,7 +10,7 @@ import {UserModel} from "../models/user.model";
   styleUrls: ['./register.component.css']
 })
 
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit,OnDestroy {
   firstName = new FormControl('', [
       Validators.required,
   ])
@@ -35,8 +35,7 @@ export class RegisterComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit() {
-  }
+  
   register() {
     console.log(this.registerForm.value);
     // Attempt Logging in...
@@ -56,5 +55,9 @@ export class RegisterComponent implements OnInit {
         }
       )
     }
+  }
+  ngOnInit() {
+  }
+  ngOnDestroy(){
   }
 }
