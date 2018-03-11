@@ -30,4 +30,3 @@ export const JwtInterceptorProvider ={
     useClass:JwtInterceptor,
     multi:true
 }
-
