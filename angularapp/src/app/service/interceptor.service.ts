@@ -27,6 +27,6 @@ export class JwtInterceptor implements HttpInterceptor{
 // const Its a veriable/
 export const JwtInterceptorProvider ={
   provide: HTTP_INTERCEPTORS,
-    useClass:JwtInterceptor,
-    multi:true
+  useClass:JwtInterceptor,
+  multi:true
 }
