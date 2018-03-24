@@ -119,15 +119,16 @@ function update(_id, employeeParam) {
     function updateUser() {
         // fields to update
         var set = {
-            firstName: employeeParam.firstName,
-            lastName: employeeParam.lastName,
-            username: employeeParam.username,
+            "name":employeeParam.name,
+            "address":employeeParam.address,
+            "designation":employeeParam.designation,
+            "dob":employeeParam.dob,
+            "status":employeeParam.status,
+            "doj":employeeParam.doj,
+            "payscale":employeeParam.payscale,
+            "branch":employeeParam.branch,
+            "phone":employeeParam.phone
         };
-
-        // update password if it was entered
-        if (employeeParam.password) {
-            set.hash = bcrypt.hashSync(employeeParam.password, 10);
-        }
 
         db.employees.update(
             { _id: mongo.helper.toObjectID(_id) },
