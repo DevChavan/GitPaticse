@@ -4,27 +4,29 @@
   </div>
   <!-- /.col-lg-12 -->
 </div>
-
-<p-accordion>
-  <p-accordionTab header="Employee" [selected]="true">
+<pre>
+  {{accordianIndex}}
+</pre>
+<p-accordion [activeIndex]="accordianIndex" (onOpen)="onTabOpen($event)">
+  <p-accordionTab header="Employee">
     <form role="form" [formGroup]="employeeForm" (ngSubmit)="addemployee()">
       <div class="row">
         <div class="col-lg-4">
-          <div class="form-group">
-            <label>Employee ID </label>
-            <input class="form-control" placeholder="Employee ID" type="text" name="employeeid" required id="employeeid" formControlName="employeeid">
-          </div>
+          <!--<div class="form-group">-->
+            <!--<label>Employee ID </label>-->
+            <!--<input class="form-control" placeholder="Employee ID" type="text" name="employeeid" required id="employeeid" formControlName="employeeid" [(ngModel)]="employee._id">-->
+          <!--</div>-->
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label>Employee Name </label>
-            <input class="form-control" placeholder="Employee Name" type="text" name="employeename" required id="employeename" formControlName="employeename">
+            <input class="form-control" placeholder="Employee Name" type="text" name="employeename" required id="employeename" formControlName="employeename" [(ngModel)]="employee.name">
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label>Employee Address</label>
-            <input class="form-control" placeholder="Employee Address" type="text" name="employeeaddress" required id="employeeaddress" formControlName="employeeaddress">
+            <input class="form-control" placeholder="Employee Address" type="text" name="employeeaddress" required id="employeeaddress" formControlName="employeeaddress" [(ngModel)]="employee.address">
           </div>
         </div>
       </div>
@@ -34,12 +36,11 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label>Employee Designation</label>
-            <select class="form-control" name="employeedesignation" id="employeedesignation" formControlName="employeedesignation">
-              <option>Manager</option>
-              <option>Associate Managaer</option>
-              <option>Director</option>
-              <option>Account Manager</option>
-              <option>Recruiter</option>
+            <select class="form-control" name="employeedesignation" id="employeedesignation" formControlName="employeedesignation" [(ngModel)]="employee.designation">
+              <option value="">Select Designation</option>
+              <option *ngFor="let d of designations">
+                {{d.label}}
+              </option>
             </select>
           </div>
         </div>
@@ -47,7 +48,7 @@
           <div class="form-group">
             <label>Employee DOB</label>
             <div class="clearfix"></div>
-            <p-calendar [(ngModel)]="value1" [showIcon]="true" formControlName="employeedob"></p-calendar>
+            <p-calendar  [showIcon]="true" formControlName="employeedob" [(ngModel)]="employee.dob"></p-calendar>
           </div>
         </div>
         <div class="col-lg-4">
@@ -56,7 +57,7 @@
             <div class="clearfix"></div>
             <div class="checkbox col-lg-6">
               <label>
-                <input type="checkbox" value="" formControlName="employeecheck">Full Time
+                <input type="checkbox" value="" formControlName="employeecheck" [(ngModel)]="employee.status">Full Time
               </label>
             </div>
             <div class="checkbox col-lg-6" style="margin-top: 10px">
@@ -73,28 +74,24 @@
           <div class="form-group">
             <label>Employee DOJ</label>
             <div class="clearfix"></div>
-            <p-calendar [(ngModel)]="value2" [showIcon]="true" formControlName="employeedoj"></p-calendar>
+            <p-calendar [showIcon]="true" formControlName="employeedoj" [(ngModel)]="employee.doj"></p-calendar>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label>Employee Payscale</label>
-            <select class="form-control" formControlName="employeepayscale">
-              <option>Grade A</option>
-              <option>Grade B</option>
-              <option>Grade C</option>
-              <option>Grade D</option>
+            <select class="form-control" formControlName="employeepayscale" [(ngModel)]="employee.payscale">
+              <option>Select Payscale</option>
+              <option *ngFor="let p of payscales">{{p.label}}</option>
             </select>
           </div>
         </div>
         <div class="col-lg-4">
           <div class="form-group">
             <label>Branch</label>
-            <select class="form-control">
-              <option>Grade A</option>
-              <option>Grade B</option>
-              <option>Grade C</option>
-              <option>Grade D</option>
+            <select class="form-control" formControlName="employeebranch" [(ngModel)]="employee.branch">
+              <option>Select Branch</option>
+              <option *ngFor="let b of branches">{{b.label}}</option>
             </select>
           </div>
         </div>
@@ -104,7 +101,7 @@
         <div class="col-lg-4">
           <div class="form-group">
             <label>Employment Phone</label>
-            <input class="form-control" placeholder="Employee Phone" type="text" name="employeephone" required id="employeephone" formControlName="employeephone">
+            <input class="form-control" placeholder="Employee Phone" type="text" name="employeephone" required id="employeephone" formControlName="employeephone" [(ngModel)]="employee.phone">
           </div>
         </div>
       </div>
@@ -117,12 +114,25 @@
   </p-accordionTab>
   <p-accordionTab header="Employee List">
 
-    <p-dataTable [value]="cars1" [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)">
-      <p-column field="vin" header="Employee ID" [sortable]="true"></p-column>
-      <p-column field="year" header="Employee Name" [sortable]="true"></p-column>
-      <p-column field="brand" header="DOJ" [sortable]="true"></p-column>
-      <p-column field="color" header="Status" [sortable]="true"></p-column>
-      <p-column field="color" header="Actions" [sortable]="true"></p-column>
+    <p-dataTable [value]="employeeList" [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)">
+      <p-column field="name" header="Employee Name" [sortable]="true"></p-column>
+      <p-column field="address" header="Address" [sortable]="true"></p-column>
+      <p-column field="designation" header="Designation" [sortable]="true"></p-column>
+      <p-column field="dob" header="DOB" [sortable]="true"></p-column>
+      <p-column field="status" header="Status" [sortable]="true"></p-column>
+      <p-column field="doj" header="DOJ" [sortable]="true"></p-column>
+      <p-column field="payscale" header="Payscale" [sortable]="true"></p-column>
+      <p-column field="branch" header="Branch" [sortable]="true"></p-column>
+      <p-column field="phone" header="Phone" [sortable]="true"></p-column>
+      <p-column field="Edit" header="Action" [sortable]="true">
+        <ng-template pTemplate="header">
+          Action
+        </ng-template>
+        <ng-template let-employee="rowData" pTemplate="body">
+          <button type="button" pButton (click)="editEmployee(employee)" icon="fa-edit"></button>
+          <button type="button" pButton (click)="deleteEmployee(employee)" icon="fa-trash"></button>
+        </ng-template>
+      </p-column>
     </p-dataTable>
 
 

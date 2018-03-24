@@ -1,0 +1,26 @@
+[
+  {
+    "_id" :  111,
+    "name" : "Mahesh",
+    "address": "C 406 Gk Royal Hills",
+    "designation": "Manager",
+    "dob": "10/13/1983",
+    "status": "Full Time",
+    "doj": "12/09/2003",
+    "payscale": "Grade A",
+    "branch": "Branch A",
+    "phone": 9372261213
+  },
+  {
+    "_id" :  222,
+    "name" : "Girish",
+    "address": "Gandhi Chowk Nipani",
+    "designation": "Ass. manager",
+    "dob": "03/20/1986",
+    "status": "Full Time",
+    "doj": "12/22/2005",
+    "payscale": "Grade C",
+    "branch": "Branch C",
+    "phone": 9372261213
+  }
+]

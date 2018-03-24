@@ -1,11 +1,11 @@
 export class EmployeeModel{
-  "_id":string;
+  "_id":number;
   "name":string;
   "address":string;
   "designation":string;
-  "dob":number;
+  "dob":Date;
   "status":string;
-  "doj":number;
+  "doj":Date;
   "payscale":string;
   "branch":string;
   "phone":number;

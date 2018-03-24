@@ -12,6 +12,8 @@ import {AccordionModule} from "primeng/accordion";
 import {DataTableModule} from "primeng/datatable";
 import {CalendarModule} from "primeng/calendar";
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import {CommonModule} from "@angular/common";
+//import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
     EmployeeComponent
   ],
   imports: [
+    CommonModule,
     routing,
     ChartModule,
     AccordionModule,
     DataTableModule,
     CalendarModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
 })

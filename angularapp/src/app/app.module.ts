@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { routing } from './app.rounting.module';
@@ -11,6 +10,9 @@ import { HttpClientModule } from "@angular/common/http";
 import {AuthGuard} from "./service/authguard.service";
 import {JwtInterceptor, JwtInterceptorProvider} from "./service/interceptor.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {EmployeeService} from "./service/employee.service";
+import {CommonModule} from "@angular/common";
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
   declarations: [ // components
@@ -19,8 +21,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     RegisterComponent
   ],
   imports: [ // Modules
-    BrowserModule,
     routing,
+    CommonModule,
+    CheckboxModule,
     LayoutModule,
     FormsModule,
     ReactiveFormsModule,
@@ -31,7 +34,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     UserService,
     ReactiveFormsModule,
     AuthGuard,
-    JwtInterceptorProvider
+    JwtInterceptorProvider,
+    EmployeeService
   ],
   bootstrap: [AppComponent]
 })
