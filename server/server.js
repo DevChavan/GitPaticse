@@ -25,6 +25,7 @@ app.use(expressJwt({
 
 // routes
 app.use('/users', require('./controllers/users.controller'));
+app.use('/employee', require('./controllers/employee.controller'));
 
 // error handler
 app.use(function (err, req, res, next) {
