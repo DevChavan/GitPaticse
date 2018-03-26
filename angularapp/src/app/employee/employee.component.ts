@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import { EmployeeModel } from "../models/employee.model";
 import {EmployeeService} from "../service/employee.service";
-import { omit, findIndex } from "lodash";
+import { omit, findIndex, isEmpty } from "lodash";
 import {isNullOrUndefined} from "util";
 
 @Component({
@@ -68,9 +68,9 @@ export class EmployeeComponent {
   constructor( private employeeservice: EmployeeService){
     this.employee = new EmployeeModel();
     this.employeeForm = new FormGroup({
-      employeeid: new FormControl('', [
-        Validators.required,
-      ]),
+      // employeeid: new FormControl('', [
+      //   Validators.required,
+      // ]),
       employeename: new FormControl('', [
         Validators.required,
       ]),
@@ -111,8 +111,8 @@ export class EmployeeComponent {
     this.employeeservice.getAll().subscribe(
       result=>{
         console.log("employee", result);
-
         this.employeeList=result as EmployeeModel[];
+        this.employeeservice.setEmpListUsingSub(this.employeeList);
       },
       error=>{
 
@@ -134,16 +134,63 @@ export class EmployeeComponent {
     this.accordianIndex = event.index;
 
   }
-  addemployee() {
-    this.employee.dob = this.employeeForm.value.employeedob;
-    let index = findIndex(this.employeeList, { 'name': this.employee.name})
-    console.log("index", index);
-    if(index == -1) {
+  submitEmployee() {
 
-      this.employee._id = isNullOrUndefined(this.employee._id)? 1 : this.employee._id +1;
-      console.log("ss", this.employee);
-      this.employeeList.push(this.employee);
-      console.log(this.employeeList);
+    if(!isNullOrUndefined(this.employee) && !isEmpty(this.employee) && this.employeeForm.valid) {
+      // Without server logical function (Using .JSON file)
+      // this.employee.dob = this.employeeForm.value.employeedob;
+      // let index = findIndex(this.employeeList, { 'name': this.employee.name})
+      // console.log("index", index);
+      // if(index == -1) {
+      //   //this.employee._id = isNullOrUndefined(this.employee._id)? 1 : this.employee._id +1;
+      //   console.log("ss", this.employee);
+      //   this.employeeList.push(this.employee);
+      //   console.log(this.employeeList);
+      // } else {
+      //   this.employeeList.splice(index, 1, this.employee);
+      // }
+
+      //With serve connection
+
+      let index = findIndex(this.employeeList, { '_id': this.employee._id})
+      if(index == -1) {
+        this.employeeservice.create(this.employee).subscribe(
+          result => {
+            console.log("emp:", result)
+            this.getEmployee();
+          },
+          error => {
+
+          }
+        )
+      } else {
+        this.employeeservice.update(this.employee).subscribe(
+          result => {
+            this.getEmployee();
+          }
+        )
+      }
+
     }
+
+
+  }
+  deleteEmployee(employee) {
+    //const index = this.employeeList.findIndex(emp => employee._id == emp._id);
+
+    // Logic using .JSON file
+    // this.employeeList.splice(index, 1);
+    // console.log("delete index", index);
+    // console.log(this.employeeList);
+    this.employeeservice.delete(employee._id).subscribe(
+      result => {
+        this.getEmployee();
+      },
+      error => {
+
+      }
+    )
+
+
   }
 }

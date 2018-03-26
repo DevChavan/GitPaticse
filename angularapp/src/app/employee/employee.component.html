@@ -9,7 +9,7 @@
 </pre>
 <p-accordion [activeIndex]="accordianIndex" (onOpen)="onTabOpen($event)">
   <p-accordionTab header="Employee">
-    <form role="form" [formGroup]="employeeForm" (ngSubmit)="addemployee()">
+    <form role="form" [formGroup]="employeeForm" (ngSubmit)="submitEmployee()">
       <div class="row">
         <div class="col-lg-4">
           <!--<div class="form-group">-->
@@ -114,7 +114,7 @@
   </p-accordionTab>
   <p-accordionTab header="Employee List">
 
-    <p-dataTable [value]="employeeList" [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)">
+    <p-dataTable [value]="employeeList" [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)" [immutable]="false">
       <p-column field="name" header="Employee Name" [sortable]="true"></p-column>
       <p-column field="address" header="Address" [sortable]="true"></p-column>
       <p-column field="designation" header="Designation" [sortable]="true"></p-column>

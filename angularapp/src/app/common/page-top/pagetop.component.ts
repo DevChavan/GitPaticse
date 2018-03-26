@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../../service/user.service";
+import {EmployeeService} from "../../service/employee.service";
 
 @Component({
     selector: 'app-page-top',
@@ -13,7 +14,7 @@ export class PageTopComponent {
   //aray for user list to show list empty array
   userList:Array<any>=[];
 
-  constructor(private userservice:UserService){
+  constructor(private userservice:UserService, private employeeservice: EmployeeService){
     if(localStorage.getItem('currentUser')){
       //console.log(localStorage.getItem('currentUser'));
       let user= localStorage.getItem('currentUser');
@@ -22,7 +23,7 @@ export class PageTopComponent {
     this.getAllUser();
   }
   ngOnInit() {
-
+    this.getAllEmployee();
   }
   logout(){
     this.userservice.logOut();
@@ -36,5 +37,13 @@ export class PageTopComponent {
      error=>{
 
      })
+   }
+
+   getAllEmployee(){
+      this.employeeservice.getEmpListUsingSub().subscribe(
+        result=> {
+          console.log("emp using Sub", result);
+        }
+      )
    }
 }

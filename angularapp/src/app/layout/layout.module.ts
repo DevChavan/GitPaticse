@@ -5,7 +5,7 @@ import {SidebarComponent} from "../common/sidebar/sidebar.component";
 import {DashboardComponent} from '../dashboard/dashboard.component';
 import {TableComponent} from '../table/table.component';
 import {LayoutComponent} from "./layout.component";
-import {ChartModule} from "../charts/chart.module";
+import {ChartsModule} from "../charts/chart.module";
 import {BranchComponent} from "../branch/branch.component";
 import {EmployeeComponent} from "../employee/employee.component"
 import {AccordionModule} from "primeng/accordion";
@@ -28,7 +28,7 @@ import {CommonModule} from "@angular/common";
   imports: [
     CommonModule,
     routing,
-    ChartModule,
+    ChartsModule,
     AccordionModule,
     DataTableModule,
     CalendarModule,

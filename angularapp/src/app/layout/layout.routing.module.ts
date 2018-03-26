@@ -23,7 +23,7 @@ const routes: Routes = [
             path: 'branch', component: BranchComponent ,canActivate:[AuthGuard]
         },
         {
-            path: 'charts', loadChildren:'../charts/chart.module#ChartModule' ,canActivate:[AuthGuard]
+            path: 'charts', loadChildren:'../charts/chart.module#ChartsModule' ,canActivate:[AuthGuard]
         }
     ]
   }
