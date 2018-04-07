@@ -13,6 +13,8 @@ import {DataTableModule} from "primeng/datatable";
 import {CalendarModule} from "primeng/calendar";
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import {CommonModule} from "@angular/common";
+// import { UpperCasePipe } from "../employee/upperCase.pipe";
+// import { FormatFileSizePipe } from "../charts/formatfileSize.pipe";
 //import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({

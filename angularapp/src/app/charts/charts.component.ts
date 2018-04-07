@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormatFileSizePipe }  from './formatfileSize.pipe'
 
 @Component({
   selector: 'app-charts',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartsComponent implements OnInit {
   data:any;
+  fileSizes: Array<any>;
+  largeFileSize=100;
   constructor() {
     this.data = {
       labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -25,6 +28,8 @@ export class ChartsComponent implements OnInit {
         }
       ]
     }
+
+    this.fileSizes = [10, 100, 1000, 10000, 100000, 10000000, 10000000000];
   }
 
   ngOnInit() {

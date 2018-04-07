@@ -1,3 +1,8 @@
 <app-barchart [bardata]="data" (changedata)="changeBarDataFromParent()">
 
 </app-barchart>
+
+<div>
+  <p *ngFor="let f of fileSizes">{{ f | formatFileSize | upperCase}}</p>
+  <p>{{ largeFileSize | formatFileSize:true  }}</p>
+</div>

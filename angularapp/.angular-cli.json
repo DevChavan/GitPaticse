@@ -34,6 +34,7 @@
         "../node_modules/metismenu/dist/metisMenu.min.js",
         "../node_modules/raphael/raphael.min.js",
         "../node_modules/morris.js/morris.min.js",
+        "../node_modules/chart.js/dist/Chart.js",
         "assets/js/sb-admin-2.js"
       ],
       "environmentSource": "environments/environment.ts",

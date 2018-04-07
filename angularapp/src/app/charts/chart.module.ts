@@ -5,18 +5,27 @@ import { FlotchartComponent } from "./flotchart/flotchart.component";
 import {ChartModule} from "primeng/chart";
 import {ChartsComponent} from "./charts.component";
 import {BarchartComponent} from "./barchart/barchart.component";
+import {FormatFileSizePipe} from "./formatfileSize.pipe";
+import {CommonModule} from "@angular/common";
+import {UpperCasePipe} from "../employee/upperCase.pipe";
 
 @NgModule({
     declarations: [
       FlotchartComponent,
       MorrischartComponent,
       ChartsComponent,
-      BarchartComponent
+      BarchartComponent,
+      FormatFileSizePipe,
+      UpperCasePipe
     ],
     imports: [
       routing,
       ChartModule,
-
+      CommonModule
+    ],
+    exports:[
+      FormatFileSizePipe,
+      UpperCasePipe
     ],
     providers: [],
 })

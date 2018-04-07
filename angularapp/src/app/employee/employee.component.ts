@@ -4,6 +4,7 @@ import { EmployeeModel } from "../models/employee.model";
 import {EmployeeService} from "../service/employee.service";
 import { omit, findIndex, isEmpty } from "lodash";
 import {isNullOrUndefined} from "util";
+import { UpperCasePipe } from './upperCase.pipe'
 
 @Component({
   selector: 'employee',
@@ -16,6 +17,7 @@ export class EmployeeComponent {
   accordianIndex: number= -1;
   empListAccordian: boolean=false;
   employeeList: EmployeeModel[];
+
   employee: EmployeeModel;
 
   employeeForm: FormGroup;
@@ -65,8 +67,18 @@ export class EmployeeComponent {
     },
   ]
 
+  status = [
+    {
+      "label": "Full Time", "value": "Full Time"
+    },
+    {
+      "label": "Part Time", "value": "Part Time"
+    }
+   ]
+
   constructor( private employeeservice: EmployeeService){
     this.employee = new EmployeeModel();
+
     this.employeeForm = new FormGroup({
       // employeeid: new FormControl('', [
       //   Validators.required,
@@ -112,6 +124,7 @@ export class EmployeeComponent {
       result=>{
         console.log("employee", result);
         this.employeeList=result as EmployeeModel[];
+        console.log("list emp:",this.employeeList);
         this.employeeservice.setEmpListUsingSub(this.employeeList);
       },
       error=>{

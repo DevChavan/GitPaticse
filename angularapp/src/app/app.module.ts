@@ -18,7 +18,7 @@ import {CheckboxModule} from "primeng/checkbox";
   declarations: [ // components
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [ // Modules
     routing,

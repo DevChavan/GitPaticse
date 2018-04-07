@@ -7,6 +7,12 @@
 <pre>
   {{accordianIndex}}
 </pre>
+<pre>
+  {{employeeList | json}} 
+</pre>
+<pre>
+  {{employee}}
+</pre>
 <p-accordion [activeIndex]="accordianIndex" (onOpen)="onTabOpen($event)">
   <p-accordionTab header="Employee">
     <form role="form" [formGroup]="employeeForm" (ngSubmit)="submitEmployee()">
@@ -55,16 +61,21 @@
           <div class="form-group">
             <label>Employment Status</label>
             <div class="clearfix"></div>
-            <div class="checkbox col-lg-6">
+            <div class="checkbox col-lg-6" *ngFor="let st of status">
               <label>
-                <input type="checkbox" value="" formControlName="employeecheck" [(ngModel)]="employee.status">Full Time
+                <input type="radio" [value]="st.value" formControlName="employeecheck" [(ngModel)]="employee.status" >{{st.label}}
               </label>
             </div>
-            <div class="checkbox col-lg-6" style="margin-top: 10px">
-              <label>
-                <input type="checkbox" value="" formControlName="employeecheck">Part Time
-              </label>
-            </div>
+            <!--<div class="checkbox col-lg-6" style="margin-top: 10px">-->
+              <!--<label>-->
+                <!--<input type="radio" value="Full Time" formControlName="employeecheck" [(ngModel)]="employee.status">Full Time-->
+              <!--</label>-->
+            <!--</div>-->
+            <!--<div class="checkbox col-lg-6" style="margin-top: 10px">-->
+              <!--<label>-->
+                <!--<input type="radio" value="Part Time" formControlName="employeecheck" [(ngModel)]="employee.status">Part Time-->
+              <!--</label>-->
+            <!--</div>-->
           </div>
         </div>
       </div>
@@ -113,14 +124,25 @@
     </form>
   </p-accordionTab>
   <p-accordionTab header="Employee List">
-
     <p-dataTable [value]="employeeList" [sortField]="sortF" [sortOrder]="sortO" (onSort)="changeSort($event)" [immutable]="false">
-      <p-column field="name" header="Employee Name" [sortable]="true"></p-column>
+      <p-column field="name" header="Employee Name" [sortable]="true">
+        <ng-template let-col let-employee="rowData" pTemplate="body">
+          <span>{{employee[col.field] | upperCase}}</span>
+        </ng-template>
+      </p-column>
       <p-column field="address" header="Address" [sortable]="true"></p-column>
       <p-column field="designation" header="Designation" [sortable]="true"></p-column>
-      <p-column field="dob" header="DOB" [sortable]="true"></p-column>
+      <p-column field="dob" header="DOB" [sortable]="true">
+        <ng-template let-col let-employee="rowData" pTemplate="body">
+          <span>{{employee[col.field] | date: 'd MMM , y'}}</span>
+        </ng-template>
+      </p-column>
       <p-column field="status" header="Status" [sortable]="true"></p-column>
-      <p-column field="doj" header="DOJ" [sortable]="true"></p-column>
+      <p-column field="doj" header="DOJ" [sortable]="true">
+        <ng-template let-col let-employee="rowData" pTemplate="body">
+          <span>{{employee[col.field] | date: 'd MMM , y'}}</span>
+        </ng-template>
+      </p-column>
       <p-column field="payscale" header="Payscale" [sortable]="true"></p-column>
       <p-column field="branch" header="Branch" [sortable]="true"></p-column>
       <p-column field="phone" header="Phone" [sortable]="true"></p-column>
@@ -134,8 +156,6 @@
         </ng-template>
       </p-column>
     </p-dataTable>
-
-
-
   </p-accordionTab>
 </p-accordion>
+
